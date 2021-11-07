@@ -1,5 +1,5 @@
 import os
-
+import natsort
 # Function responsible for obtaining a list of photos, that have been placed to mark (Please use .jpg).
 
 # TODO (not important now) - make this go for only directories that haven't been used.
@@ -14,7 +14,8 @@ def get_path_for_files(path = "input/", print_files_name = False):
     # whether the folder for a given name has not been previously created.
     # When both conditions are true the filename (which actually is its path)
     # are added to the list which will be returned last.
-    for file in filenames:
+
+    for file in  natsort.natsorted(filenames,reverse=False):
         if '.jpg' in file:
             folder_path_exist_check = file.replace(".jpg", "")
             tmp_list.append(path + file)
