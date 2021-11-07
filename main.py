@@ -10,4 +10,5 @@ print(path_list)
 # TODO check what in case that there will be more different folders with photos instead just 1.
 # Showing very <photos_skipped> photo.
 # Please specify <list_of_paths> as list that you have gotten from get_path_for_files()
-show_photos.show_photo(list_of_paths=path_list, photos_skipped=10)
+show_photos.show_photo(list_of_paths=path_list, photos_skipped=5)
+print(show_photos.get_bounding_box_list())
