@@ -1,5 +1,3 @@
-# TODO - show photos, for example show every 10th photo.
-
 # TODO - save cords of opposite corners (top left, bottom right)
 
 # TODO - draw rectangle with mouse clicks on every 10th photo
