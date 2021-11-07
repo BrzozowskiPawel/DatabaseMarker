@@ -1,34 +1,44 @@
 import cv2
 
+x_, y_ = None, None
+dx_, dy_ = None, None
+first_click = True
+img = None
 # This functions is responsible for showing every <number> photo.
 # Please press any key to show next photo.
-def show_photo(list_of_paths, photos_skipped = 5):
-    number_of_shown_photo = 1
-    photos_to_be_shown = int(len(list_of_paths) / photos_skipped) + 1
-    number_of_photo = 1
+def show_photo(list_of_paths, photos_skipped=5):
     file_index = 0
-
-    for file_path  in list_of_paths:
+    global img
+    for file_path in list_of_paths:
         if file_index == 0:
             img = cv2.imread(file_path)
-            window_title = set_window_title(file_path=file_path, number_of_shown_photo=number_of_shown_photo, photos_to_be_shown=photos_to_be_shown)
-            cv2.imshow(window_title, img)
+            cv2.imshow(file_path, img)
+            cv2.setMouseCallback(file_path, click_event)
             cv2.waitKey(0)  # waits until a key is pressed
             cv2.destroyAllWindows()  # destroys the window showing image
-            number_of_shown_photo = number_of_shown_photo + 1
-
-        number_of_photo = number_of_photo + 1
+        # print(f"current index number = {file_index} - file: {file_path}")
         file_index = file_index + 1
-
         if file_index >= photos_skipped:
             file_index = 0
 
 
-def set_window_title(file_path, number_of_shown_photo, photos_to_be_shown):
-    if number_of_shown_photo == photos_to_be_shown:
-        return "LAST PHOTO TO MARK: " + file_path + " [" + str(number_of_shown_photo) + "/" + str(
-            photos_to_be_shown) + "]"
-    else:
-        return "Currently marking: " + file_path + " [" + str(number_of_shown_photo) + "/" + str(
-            photos_to_be_shown) + "]"
+def click_event(event, x, y, flags, param):
+    global x_, y_, dx_, dy_
+    global first_click
+    if not first_click:
+        if event == cv2.EVENT_LBUTTONUP:
+            dx_, dy_ = x, y
+            print(dx_, ' x ', dy_)
+            first_click = True
+            cv2.rectangle(img, (x_,y_), (dx_,dy_), (255, 0, 0), 2)
+            cv2.imshow("result", img)
+            return
+    if first_click:
+        if event == cv2.EVENT_LBUTTONDOWN:
+            x_, y_ = x, y
+            print(x_, ' ', y_)
+            first_click = False
+            return
+
+
 
