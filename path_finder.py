@@ -5,6 +5,7 @@ import os
 # TODO (not important now) - make this go for only directories that haven't been used.
 # Thanks to this, you can send new files to the input directory without deleting the previously used ones.
 
+
 def get_path_for_files(path = "input/", print_files_name = False):
     # Get all the files (their names) in the input folder
     filenames = next(os.walk(path), (None, None, []))[2]  # [] if no file
@@ -16,7 +17,7 @@ def get_path_for_files(path = "input/", print_files_name = False):
     for file in filenames:
         if '.jpg' in file:
             folder_path_exist_check = file.replace(".jpg", "")
-            tmp_list.append('input/' + file)
+            tmp_list.append(path + file)
     print(f"Founded {len(tmp_list)} files in {path}")
     if print_files_name:
         print(tmp_list)

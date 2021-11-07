@@ -2,7 +2,7 @@
 
 # TODO - save cords of opposite corners (top left, bottom right)
 
-# TODO - draw rectagle wtih mouse clicks on every 10th photo
+# TODO - draw rectangle with mouse clicks on every 10th photo
 
 # TODO - calculate the displacement of the center of the marked area in the example of 10 photos
 
