@@ -37,8 +37,8 @@ def click_event(event, x, y, flags, param):
             cv2.rectangle(img, (x_,y_), (dx_,dy_), (255, 0, 0), 2)
             cv2.imshow(current_file_path, img)
             tmp_bounding_box = BoundingBox(name=current_file_path, x=x, y=y, dx=dx_,dy=dy_)
-
             bounding_box_list.append(tmp_bounding_box)
+            cv2.imwrite(current_file_path, img)
             return
 
     if first_click:
