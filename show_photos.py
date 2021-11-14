@@ -1,6 +1,5 @@
 import cv2
 from dataclasses import dataclass
-from boundingBox import BoundingBox
 
 bounding_box_list = []
 x_, y_ = None, None
@@ -24,8 +23,6 @@ def showSelections():
     cv2.imshow(current_file_path, canvas)
 
 
-# This functions is responsible for showing every <number> photo.
-# Please press any key to show next photo.
 def show_photo(list_of_paths, photos_skipped=5):
     file_index = 0
     global canvas, current_file_path
@@ -57,7 +54,6 @@ def click_event(event, x, y, flags, param):
     global x_, y_, isDrawing, current_file_path, canvas
     if event == cv2.EVENT_LBUTTONDOWN:
         x_, y_ = x, y
-        # print(x_, ' ', y_)
         isDrawing = True
     elif event == cv2.EVENT_MOUSEMOVE:
         if isDrawing:

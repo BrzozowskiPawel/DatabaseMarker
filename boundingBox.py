@@ -9,3 +9,10 @@ class BoundingBox:
         self.x = x
         self.y = y
 
+    def get_coordinates(self):
+        return self.x_, self.y_
+
+    def get_width_height(self):
+        w = abs(self.x_ - self.x)
+        h = abs(self.y_ - self.y)
+        return w,h
